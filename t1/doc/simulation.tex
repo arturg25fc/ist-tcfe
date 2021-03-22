@@ -1,0 +1,35 @@
+\section{Simulation Analysis}
+\label{sec:simulation}
+\captionsetup[table]{skip=10pt}
+
+\subsection{Operating Point Analysis}
+
+\vspace{5mm}
+\par Table \ref{tab_op} shows the simulated operating point results (obtained from Ngspice) for the circuit under analysis, considering that current directions $I_1$, $I_2$, $I_3$ and $I_4$ (and, accordingly, the positive and negative terminals of the components) were defined based on the same model as before.
+
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|}
+    \hline    
+    \textbf{Variable name} & \textbf{Value [mA or V]} \\ \hline
+    \input{op_tab}
+  \end{tabular}
+  \caption{Operating point analysis - a variable preceded by @ is of type \textit{current} and expressed in miliAmpere; other variables are of type \textit {voltage} and expressed in Volt. $gb$ refers to the controlled current source $I_b$ and the rest is defined as before.}
+  \label{tab_op}
+\end{table}
+\vspace{3mm}
+\par Compared to the theoretical analysis results, one notices a few differences.
+\vspace{3mm}
+\par Focusing on the obtained nodal voltage levels, an almost exact resemblance is shown, except for the fact that Octave's used result precision is of 6 decimal places, whereas Ngspice always presents 7 significant digits (hence the small differences). It's worth noting that node 8 (introduced exclusively on the simulation analysis) was created so a zero valued voltage source (working as an ammeter) could be placed in series with resistor 6, allowing the algorithm to measure the current between nodes 4 and 7.
+\vspace{3mm}
+\par The same issue takes place with the current values, altough we can only directly compare four of them: $I_1$ with $@r2[i]$, $I_2$ with $@r1[i]$, $I_3$ with both $@r6[i]$ and $@r7[i]$ as well as $I_4$ with the symmetric of $I_d$, as stated on section \ref{sec:analysis} (even if it was rather an input value and not quite an output one). For further comparisons, proceed as indicated in sections \ref{sec:2.1} and \ref{sec:2.2}.
+\vspace{3mm}
+\par Other than that, we could say there's a perfect match on the results obtained from both analysis methods.
+\vspace{5mm}
+
+
+
+
+

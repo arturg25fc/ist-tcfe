@@ -1,0 +1,51 @@
+* Lab1: Circuit analysis methods
+.options savecurrents
+
+
+* C O M P O N E N T S
+
+* Independent voltage sources (please introduce the value in V)
+Va 1 4 5.040990939839293
+Vfalsa 4 8 0.0
+
+* Linear Current-Controlled Voltage Source (please introduce the value in V)
+Hc 5 0 Vfalsa 8.078580599523491
+
+* Independent current source (please introduce the value in mA)
+Id 0 6 1.0179673375046598
+
+* Linear Voltage-Controlled Current Source (please introduce the value in mA)
+Gb 6 3 2 5 7.208307865585887
+
+* Resistors (please introduce the values in kOhm)
+R1 1 2 1.0240888586490353
+R2 3 2 2.077743916695854
+R3 2 5 3.085823508104019
+R4 5 4 4.1834915928511425
+R5 5 6 3.094732956849807
+R6 8 7 2.048970926825776
+R7 7 0 1.0225774446662013
+
+
+* V A L U E   P R I N T I N G
+
+.control
+
+op
+
+echo ""
+echo ""
+echo "************************************************"
+echo "O P E R A T I N G   P O I N T   A N A L Y S I S"
+echo "************************************************"
+echo ""
+
+echo  "op_TAB"
+print all
+echo  "op_END"
+
+quit
+.endc
+
+
+.end

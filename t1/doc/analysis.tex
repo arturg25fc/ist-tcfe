@@ -1,0 +1,131 @@
+
+\section{Theoretical Analysis}
+\label{sec:analysis}
+\vspace{3mm}
+\par In this section, the previously shown circuit is theoretically analised. Even though there are many ways to proceed, two methods are emphasized: Mesh Analysis and Nodal Analysis.
+\vspace{3mm}
+\par First of all, it is important to refer that it is considered the Lumped Elements Aproximation. In other words, there is no notion of physical distance, so there is no wave propagation or radiation. The conductors that connect branches (circuit components) by means of nodes do not dissipate any energy and do not offer resistance to the current flux. It is this work's aim to find values for two very important physical quantities. Current ($I$) is the measurement of the charge that passes through a branch per unit of time. It is measured in Ampere ($1A = 1C/s$). On the other hand, Voltage/Eletric Tension ($V$) is a difference of eletrical potential measured between 2 points of the circuit. It is measured in Volt ($1V=1J/C$). It is common to attribute a voltage to the nodes by comparison to a reference one (GND), defined as having $V_{GND}=V_0=0V$.
+\vspace{3mm}
+\par Along the analysis, some laws are considered, such as Ohm's Law (eq. \ref{eq1}), the Kirchhoff Current Law (KCL, eq. \ref{eq2}) and the Kirchhoff Voltage Law (KVL, eq. \ref{eq3}). Ohm's law is applied to resistors as a way to linearly relate their voltage and current. KCL is applied to nodes and states that the sum of currents converging (resp. diverging) in a node is null, whereas KVL tells that the sum of voltages in a circuit loop is null:
+
+\begin{equation}
+  \label{eq1}
+   V=RI
+\end{equation}
+\begin{equation}
+  \label{eq2}
+   \sum_{i=1}^{N} I_i = 0
+\end{equation}
+\begin{equation}
+  \label{eq3}
+   \sum_{i=1}^{N} V_i = 0
+\end{equation}
+
+\vspace{3mm}
+\par During the analysis, the currents were considered to flow from the positive to the negative terminal of each component.
+
+
+\subsection{Mesh Analysis}
+\label{sec:2.1}
+
+\vspace{3mm}
+\par For this method, it is required a definition of "Mesh Currents". As the studied circuit has four meshes (loops with no other loops inside), disposed like a cartesian plane $xOy$ with the origin as its centre, each one of them circulated by a current $I_x$, with $x$ being the number of the quadrant respecting to the referential. $I_1$ and $I_3$ are circulating anti-clockwise and $I_2$ and $I_4$ are circulating clockwise (as shown in Figure \ref{fig:rc}). Knowing mesh currents, we can know any node voltages or branch currents, using Ohm’s law.
+\vspace{3mm}
+\par It is worth noting that some replacements have to be made, so the dependent sources can be considered on the previously refered laws:
+
+\vspace{3mm}
+\begin{equation}
+  \label{eq4}
+   V_b=R_3(I_1+I_2)
+\end{equation}
+\begin{equation}
+  \label{eq5}
+   I_c=I_3
+\end{equation}
+\vspace{3mm}
+
+\par Therefore, it is presented the following system of equations with $I_x , x\in{\{1,2,3,4\}}$ as the unknown variables: 
+
+\vspace{5mm}
+\begin{center}
+$\begin{cases} K_bR_3(I_1+I_2)-I_1=0 \\ -V_a +R_1I_2 + R_3(I_1+I_2) + R_4(I_2+I_3) = 0 \\ R_6I_3 + R_7I_3 - K_cI_3 + R_4(I_2+I_3) = 0 \\ I_4 = -I_d \end{cases}$
+\vspace{5mm}
+\end{center}
+\par By solving this system using Octave (free available software), we obtain the solution presented on Table \ref{tab_malha}. 
+\newpage
+\vspace{7mm}
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|c|c|}
+    \hline    
+    $I_1$ & $I_2$ & $I_3$ & $I_4$ \\\hline
+    \input{malha} \hline
+  \end{tabular}
+  \caption{Current values in miliAmpere.}
+  \label{tab_malha}
+\end{table}
+
+\vspace{3mm}
+\par Note that the values for the currents that pass through each component can be deducted from the results shown above, for example:
+
+\begin{itemize}
+  \item $I_{R_1}=I_2=0.191571$ mA
+\item $I_{R_4}=I_2+I_3=1.164729$ mA
+\item $I_b=I_1=-0.200589$ mA
+ 
+  \end{itemize}
+
+
+
+\vspace{5mm}
+\subsection{Nodal Analysis}
+\label{sec:2.2}
+
+\vspace{3mm}
+\par For this method, it is required to attribute a number to every node in the circuit (numbers visible in Figure \ref{fig:rc}).
+\vspace{3mm}
+\par Once again, some replacements have to be made:
+
+\vspace{3mm}
+\begin{equation}
+  \label{eq6}
+   V_b=V_2-V_5
+\end{equation}
+\begin{equation}
+  \label{eq7}
+   I_c=(V_4-V_7)G_6
+\end{equation}
+
+\vspace{3mm}
+\par Therefore, it is presented a system of equations with $V_x , x\in{\{1,2,3,4,5,6,7\}}$ as the unkown variables (note that $G_x=\frac{1}{R_x})$:
+
+\vspace{5mm}
+\begin{center}
+  $\begin{cases} V_1-V_4=V_a \\ (V_2-V_1)G_1+(V_2-V_3)G_2+(V_2-V_5)G_3=0  \\ (V_3-V_2)G_2-K_b(V_2-V_5)=0 \\ (V_1-V_2)G_1+(V_4-V_5)G_4+(V_4-V_7)G_6=0 \\ V_5-K_cG_6V_4+K_cG_6V_7=0\\(V_6-V_5)G_5+K_b(V_2-V_5)=I_d \\ (V_7-V_4)G_6+V_7G_7=0 \end{cases}$
+  \end{center}
+\vspace{5mm}
+\par By solving this system using Octave, the following solution is obtained:
+
+\vspace{7mm}
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline    
+    $V_1$ &  $V_2$ & $V_3$&  $V_4$& $V_5$ &$V_6$& $V_7$ \\ \hline
+    \input{nodal} \hline
+  \end{tabular}
+  \caption{Voltage values in Volt.}
+  \label{tab_nodal}
+\end{table}
+\vspace{+5mm}
+
+\vspace{3mm}
+\par Once again, note that the values for the voltages between the terminals of each component can be deducted from the results shown above, for example:
+
+\begin{itemize}
+  \item $V_{R_3}=V_b=V_2-V_5=-0.027827$ V
+\item $V_c=V_5-V_0=7.861734$ V
+ 
+  \end{itemize}
