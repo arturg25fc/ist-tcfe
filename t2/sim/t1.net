@@ -1,0 +1,49 @@
+* Lab2: RC circuit analysis
+.options savecurrents
+
+
+* C O M P O N E N T S
+
+* Independent voltage sources
+*Vx 6 8 8.535661
+*Vfalsa 0 4 0.0
+*
+** Linear Current-Controlled Voltage Source
+*Hd 5 8 Vfalsa 8.2955596227e3
+*
+** Linear Voltage-Controlled Current Source
+*Gb 6 3 2 5 7.27010540728e-3
+*
+** Resistors
+*R1 0 2 1.00178386082e3
+*R2 3 2 2.07307217666e3
+*R3 2 5 3.11791302164e3
+*R4 5 0 4.11135242335e3
+*R5 5 6 3.10459842619e3
+*R6 4 7 2.07173360658e3
+*R7 7 8 1.04343065609e3
+
+.include t1.cir
+
+* V A L U E   P R I N T I N G
+
+.control
+
+op
+
+echo ""
+echo ""
+echo "************************************************"
+echo "O P E R A T I N G   P O I N T   A N A L Y S I S"
+echo "************************************************"
+echo ""
+
+echo  "op_TAB"
+print all
+echo  "op_END"
+
+quit
+.endc
+
+
+.end

@@ -1,0 +1,73 @@
+* Lab2: RC circuit analysis
+.options savecurrents
+
+
+* C O M P O N E N T S
+
+* Independent voltage sources
+*Vfalsa 0 4 0.0
+*
+** Linear Current-Controlled Voltage Source
+*Hd 5 8 Vfalsa 8.2955596227e3
+*
+** Linear Voltage-Controlled Current Source
+*Gb 6 3 2 5 7.27010540728e-3
+*
+** Capacitor
+*C 6 8 1.03856229188uF
+*
+** Resistors
+*R1 0 2 1.00178386082e3
+*R2 3 2 2.07307217666e3
+*R3 2 5 3.11791302164e3
+*R4 5 0 4.11135242335e3
+*R5 5 6 3.10459842619e3
+*R6 4 7 2.07173360658e3
+*R7 7 8 1.04343065609e3
+
+.include t2.cir
+
+.op
+
+.ic v(6)=8.535661 v(8)=0
+.end
+
+* A N A L Y S I S
+
+.control
+
+
+*makes plots in color
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
+op
+
+
+echo ""
+echo ""
+echo "************************************************"
+echo "T R A N S I E N T   A N A L Y S I S"
+echo "************************************************"
+echo ""
+
+*.ic v(6)=8.535661 v(8)=0
+
+tran 1e-5 20ms
+*plot V(6)
+hardcopy trans.ps V(6)
+echo trans_FIG
+
+
+
+*quit
+.endc
+
+
+
