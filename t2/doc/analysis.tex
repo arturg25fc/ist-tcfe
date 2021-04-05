@@ -1,0 +1,303 @@
+\section{Theoretical Analysis}
+\label{sec:theoretical}
+\vspace{3mm}
+In this section, the previously shown circuit is theoretically analised. It is important to remember that its behaviour depends on the consideration of two different time intervals, as $v_s(t)$ is defined as a piecewise function:
+\vspace{3mm}
+
+
+\begin{center}
+$v_s(t) =\begin{cases} V_s \quad \quad \quad \quad ,t<0\\ sin(2\pi ft) \quad ,t \geq 0 \end{cases}$
+\vspace{5mm}
+\end{center}
+
+\vspace{3mm}
+
+\subsection{Nodal Analysis for $t<0$} \label{teo:2.1}
+\vspace{3mm}
+
+\par For $t<0$, $v_s(t)$ assumes a constant value $V_s$ for excitation. Besides that, the system has had enough time for it to overcome any transitional period, which means all the electric quantities in the circuit have had the time to stabilize, and so the current that passes through the capacitor $i_c(t)$ is null, because $i_c(t)=C\frac{dv_c(t)}{dt}$ and $\frac{dv_c(t)}{dt}=0$ (since $v_c(t)$ is no longer varying). Therefore, we can consider an open circuit as a replacement for the capacitor branch.
+
+\vspace{3mm}
+\par In order to determine the voltages in all nodes and, hence, the currents in all branches, nodal analysis is applied to the circuit, as suggested by the following system:
+
+\begin{center}
+  $\begin{cases} V_1=V_s  \\ (V_2-V_1)G_1 + (V_2-V_3)G_2 + (V_2-V_5)G_3=0 \\ (V_3-V_2)G_2 - K_b(V_2-V_5)=0 \\ (V_5-V_2)G_3 + (V_5-V_6)G_5 + V_5G_4 + (V_8-V_7)G_7 =0 \\ K_b(V_2-V_5)+(V_6-V_5)G_5=0 \\ (V_7-V_8)G_7 + V_7G_6 =0 \\ V_8-V_5 - K_dV_7G_6=0 \end{cases}$
+\end{center}
+
+Note that some substitutions were made, such as:
+
+\vspace{3mm}
+\begin{equation}
+  \label{eq4}
+   I_b = K_b(V_2-V_5)
+\end{equation}
+\begin{equation}
+  \label{eq5}
+   V_d=-K_dV_7G_6
+\end{equation}
+\vspace{3mm}
+
+
+\par By solving this system using Octave, the voltages that follow are obtained for every node. On the other hand, defining branch currents accordingly to the conventional electric current flow (from the plus to the minus sign defined in the figure), one obtains the subsequent values for each branch (using Ohm's law). For the sake of direct comparison, the results that follow the simulation analysis are already shown in this segment as well.
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[htbp]
+\begin{minipage}{.3\textwidth}
+\centering
+
+\begin{tabular}{|c|c|}
+\hline    
+\textbf{Variable name} & \textbf{Value [A or V]} \\ \hline
+\input{voltages}
+\end{tabular}
+\end{minipage}
+\hspace{50px}
+\begin {minipage}{.8\textwidth}
+\centering
+
+\begin{tabular}{|c|c|}
+\hline    
+\textbf{Variable name} & \textbf{Value [A or V]} \\ \hline
+\input{op0_tab}
+\end{tabular}
+\end{minipage}
+\caption{On the left, nodal analysis and current values for $t<0$ by Octave. On the right, operating point analysis for $t<0$ by Ngspice: a variable preceded by @ is of type \textit{current} and expressed in Ampere; other variables are of type \textit {voltage} and expressed in Volt. $gb$ refers to the controlled current source $I_b$ and the rest is defined as before. \small Notes: $v_4$ refers to a special added node, which will be explained on \ref{sec:simulation}; the 2 last values on the left table cannot be directly seen on the right table, but can be easily deduced from the ones presented.}
+\label{tab_1}
+\end{table}
+
+
+
+\newpage
+\subsection{Nodal analysis for $t=0$, equivalent Resistance $R_{eq}$, Time Constant $\tau$} \label{teo:2.2}
+
+
+\vspace{3mm}
+\par Making $V_s=0$ (node 1 also becomes GND), the $t=0$ voltage levels for each node can be calculated, by also replacing the capacitor with a voltage source $V_x=V_6-V_8$, with $V_6$ and $V_8$ being the voltages in \ref{tab_1}. This can be done because $V_6-V_8$ remains the same for $t<0$ and $t=0$ (because the capacitor does not discharge instantly). The new circuit is, again, analysed with the Nodal Method, as suggested by the following system (results on table \ref{zdsca}):
+
+
+\begin{center}
+  $\begin{cases} V_2G_1 + (V_2-V_3)G_2 + (V_2-V_5)G_3=0 \\ -K_b(V_2-V_5)+(V_3-V_2)G_2=0 \\ V_5G_4 + (V_5-V_6)G_5 + (V_5-V_2)G_3 + (V_8-V_7)G_7 - [-K_b(V_2-V_5) + (V_5-V_6)G_5] =0 \\ V_6-V_8=V_x \\ V_7G_6+(V_7-V_8)G_7=0 \\ V_8-V_5 - K_dV_7G_6=0 \end{cases}$
+\end{center}
+
+
+\par Again, some substitutions were made, such as:
+
+\vspace{3mm}
+\begin{equation}
+  \label{a}
+   I_b = K_b(V_2-V_5)
+\end{equation}
+\begin{equation}
+  \label{aa}
+   V_d=-K_dV_7G_6
+\end{equation}
+\begin{equation}
+  \label{aaa}
+   I_x = -I_b + (V_5-V_6)G_5
+\end{equation}
+\vspace{3mm}
+
+with $I_x$ being the current that flows downwards in $V_x$ (positive sign up in $V_x$).
+
+\vspace{3mm}
+\par This circuit can be seen as a simple RC circuit, with the voltage source $V_x$ and the current that flows in the mesh being $I_x=-K_b(V_2-V_5) + (V_5-V_6)G_5$. Of course, all the remaining circuit, as seen by the capacitor's terminals, works as an equivalent resistor. Its equivalent resistance can be calculated with the expression
+
+\begin{equation}
+  R_{eq}=-\frac{V_x}{I_x}
+\end{equation}
+
+with $R_{eq}$ being the equivalent resistance as seen by the capacitor's terminals.
+
+\vspace{3mm}
+\par The minus sign results from the fact that, in the equivalent circuit, $I_x$ flows through the equivalent resistor from the negative to the positive terminal (in opposition to the convention).
+Thus, the time constant for the equivalent circuit $\tau$  can be computed as $R_{eq}C$.
+
+\vspace{3mm}
+\par By solving the refered system using Octave, the following table presents the voltage in every node, as well as the equivalent resistance and the time constant (once again, one can imediately consult the simulation values as well).
+
+
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[htbp]
+\begin{minipage}{.3\textwidth}
+\centering
+
+\begin{tabular}{|c|c|}
+\hline    
+\textbf{Variable name} & \textbf{Value [A or V or $\Omega$]} \\ \hline
+\input{voltagesReqTau}
+\end{tabular}
+\end{minipage}
+\hspace{50px}
+\begin {minipage}{.8\textwidth}
+\centering
+
+\begin{tabular}{|c|c|}
+\hline    
+\textbf{Variable name} & \textbf{Value [A or V]} \\ \hline
+\input{op1_tab}
+\end{tabular}
+\end{minipage}
+\caption{On the left, nodal analysis, current values, equivalent resistance and time constant for $t=0$ and $v_s(t)=0$ by Octave. On the right, operating point analysis for $t=0$ by Ngspice: a variable preceded by @ is of type \textit{current} and expressed in Ampere; other variables are of type \textit {voltage} and expressed in Volt. $gb$ refers to the controlled current source $I_b$ and the rest is defined as before. \small Notes: $v_4$ refers to a special added node, which will be explained on \ref{sec:simulation}; the 2 last values on the left table cannot be directly seen on the right table, but can be easily deduced from the ones presented.}
+\label{tab_2}
+\end{table}
+
+
+\newpage
+
+\subsection{Natural Solution $v_{6n}(t)$}
+
+\vspace{3mm}
+\par Let's consider the situation for $t\geq0$. The circuit's solution can be described as the superposition of two components. The natural solution, which is the system's behaviour with no external excitation (it leads to the capacitor's discharge), and the forced solution, which will allow an oscillating steady-state.
+
+\vspace{3mm}
+\par To compute the natural solution, particularly, for node $6$ ($v_{6n}$), the circuit is considered to be the previously refered simple RC circuit with the capacitor $C$ and the equivalent resistor $R_{eq}$.
+The following deduction applies KVL to the mesh, uses the capacitor's law to replace the mesh's current ($i_c(t)=C\frac{dv_c(t)}{dt}$), and solves the resulting differential equation:
+
+\begin{equation}
+ v_c+R_{eq}i=0 \Leftrightarrow v_c+R_{eq}C\frac{dv_c}{dt}=0 \Leftrightarrow v_c(t)=Ae^{-\frac{t}{R_{eq}C}}=
+\end{equation}
+
+\par The constant $A$ is determined by the initial condition as being the capacitor's voltage $v_c(0)=V_x=V_6-V_8$ at $t<0$. Considering the values obtained in the previous section for voltages in \ref{tab_2}, the natural solution for $V_6$ becomes
+
+\begin{equation}
+  v_{6n}(t)=V_xe^{-\frac{t}{R_{eq}C}}=8.53567e^{-\frac{t}{0.22432 \times 10^{-3}}} [V]
+\end{equation}
+
+\par The following figure represents its plot in the interval $[0,20]$ms:
+
+\begin{figure}[h]
+     \centering
+         \includegraphics[scale = 0.7]{v6n.eps}
+         \caption{$v_{6n}(t)$ in the interval $[0, 20]$ $ms$.}
+     \label{v6n}
+ \end{figure}
+ \vspace{5mm}
+
+
+\subsection{Forced Solution $v_{6f}(t)$}
+In order to compute the forced solution for $t\geq0$, consequence of the sinusoidal excitacion due to the source $V_1$, in $t\geq0$, it is considered the frequency $f=1$kHz and a phasor voltage $\widetilde{V_s}=1$. The circuit in figure \ref{fig:rc} is analysed using the Nodal Method (applied to phasors), as suggested by the following system, with $Y_x$ being the admittances of the components ($G_x$ for resistors and $2\pi fCj$ for the capacitor)
+
+
+\begin{center}
+  $\begin{cases} \widetilde{V_1}= \widetilde{V_s} \\ (\widetilde{V_2}-\widetilde{V_1})Y_1 + (\widetilde{V_2}-\widetilde{V_3})Y_2 + (\widetilde{V_2}-\widetilde{V_5})Y_3=0 \\  (\widetilde{V_3}-\widetilde{V_2})Y_2 -K_b(\widetilde{V_2}-\widetilde{V_5})=0 \\ (\widetilde{V_5}-\widetilde{V_2})Y_3 + \widetilde{V_5}Y_4 + (\widetilde{V_5}-\widetilde{V_6})Y_5 + (\widetilde{V_8}-\widetilde{V_7})Y_7 + (\widetilde{V_8}-\widetilde{V_6})Y_C=0 \\ (\widetilde{V_6}-\widetilde{V_5})Y_5 + (\widetilde{V_6}-\widetilde{V_8})Y_C + K_b(\widetilde{V_2}-\widetilde{V_5})=0 \\ \widetilde{V_7}Y_6 + (\widetilde{V_7}-\widetilde{V_8})Y_7 =0 \\ (\widetilde{V_8}-\widetilde{V_5}) - K_d\widetilde{V_7}Y_6=0 \end{cases}$
+\end{center}
+
+Note that, once again, some substitutions were made, such as:
+
+\vspace{3mm}
+\begin{equation}
+  \label{eq5}
+   \widetilde{I_b} = K_b(\widetilde{V_2}-\widetilde{V_5})
+\end{equation}
+\begin{equation}
+  \label{eq6}
+   \widetilde{V_d}=-K_d\widetilde{V_7}Y_6
+\end{equation}
+\vspace{3mm}
+
+\par By solving the system using Octave, the following table presents the complex amplitude (phasor) in every node:
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|}
+    \hline    
+    \textbf{Complex amplitude} & \textbf{Value} \\ \hline
+    \input{voltage_phasors}
+  \end{tabular}
+  \caption{Complex amplitude values for every node (forced solution, $t\geq0$.}
+  \label{tab_3}
+\end{table}
+
+\par The expression for the real forced solution in $\widetilde{V_6}$ can be calculated the following way (considering $\widetilde{V_1}=1$):
+
+\vspace{3mm}
+\begin{equation}
+  \label{eq7}
+   \frac{\widetilde{V_6}}{\widetilde{V_1}} = a + jb=|a + jb|e^{-j(-\phi)},\quad a,b \in \mathbb{R},\quad \phi \quad \textrm{the angle of} \quad  a + jb
+\end{equation}
+
+\par One then has:
+
+\vspace{3mm}
+\begin{equation}
+  \label{eq8}
+   \frac{V_6}{V_1} = |a + jb|
+\end{equation}
+
+\begin{equation}
+  \label{eq9}
+   \phi_6-\phi_1=\phi
+\end{equation}
+
+\par Using the values of table \ref{tab_3}, one obtains:
+
+\begin{equation}
+  \label{eq10}
+   v_{6f}(t)=0.57843\sin(2\pi \times 1000t - 2.9971) [V]
+\end{equation}
+
+\par Note that this process is usually made when the input voltage source is in the form of a cosine. By doing some algebraic manipulation, one can come to the conclusion that the use of sines is totally analogue.
+
+\vspace{5mm}
+\subsection{Total Solution $v_6(t)$}
+
+\vspace{5mm}
+\par As previously said, the total solution consists on the superposition of both natural and forced solutions. Hence,
+
+\begin{equation}
+v_6(t)=v_{6n}(t)+v_{6f}(t)=8.53567e^{-\frac{t}{0.22432 \times 10^{-3}}}+0.57843\sin(2\pi \times 1000t - 2.9971) [V]
+\end{equation}
+
+\vspace{3mm}
+\par The following figure represents the plot of both $v_s(t)$ and $v_6(t)$, in the interval $[-5,20]$ms. Note that this time range includes the transition at $t=0$. Therefore, it is normal to observe a discontinuity at $t=0$, from the constant to the oscillating solution.
+
+
+\begin{figure}[h]
+     \centering
+         \includegraphics[scale = 0.7]{v6t.eps}
+         \caption{$v_s(t)$ and $v_{6}(t)$ in the interval $[-5, 20]$ $ms$.}
+     \label{v6t}
+ \end{figure}
+ \vspace{5mm}
+
+
+\vspace{3mm}
+\par It can be observed the effect of the dissipative solution (natural), which leads to a voltage decrease, until it vanishes, only remaining the forced solution, which shows a steady-state harmonic oscillation.
+
+
+\vspace{+5mm}
+
+
+\vspace{5mm}
+\subsection{Frequency analysis} \label{teo:2.6}
+
+\par It is possible to study the effect of the input ($v_s(t)$) frequency $f$ in the output signal $v_c(t)=v_6(t)-v_8(t)$ or in any of the system nodes. This way, it is displayed the plot for both the magnitude in dB (Figure \ref{abs_v6vcvs}) and phase in degrees (Figure \ref{phase_v6vcvs}) of the signals $v_c$ and $v_6$ as function of $f$ and also of $v_s$ (for comparison). The type of scale chosen for the frequency axis $-$ logscale $-$ is convenient to make big plot ranges fit in small figures.
+
+\begin{figure}[h]
+     \centering
+         \includegraphics[scale = 0.55]{abs_v6vcvs.eps}
+         \caption{Magnitude of $v_s$ and magnitude responses of $v_{6}$ and $v_{c}$.}
+     \label{abs_v6vcvs}
+ \end{figure}
+ \vspace{5mm}
+
+\par An RC circuit behaves like a low-pass filter (blocks high frequencies and passes low frequencies). That is, at low frequencies, there's a very small magnitude response of the output frequency $v_c$. One can look at the plot and see that, for values of $f$ close to $0$, $v_c$ and $v_6$ both have an amplitude of approximately $0$ $dB$, which translates to $1V$ (the same as $v_{s}$ $-$ no response).
+\par On the other side, for high frequencies (as soon as it reaches cut-off frequency $\approx -3dB$), the magnitude (dB) of the output becomes more and more negative, with a slope of $-20dB/decade$ (this values can be obtained through the system's transfer function). This means the output voltage value in volt becomes lower and lower (high signal attenuation). The impedance of a capacitor decreases with as the input frequency increases, which means it will each time offers less resistance to the current flow between its terminals, so one can almost decribe it as a short-circuit (zero output).
+
+\vspace{3mm}
+\par Keep in mind that the circuit does not have any amplifying elements (\textit{e.g.}, transistors), so the output level is almost always less/equal to the input one. 
+
+\newpage
+ \begin{figure}[h]
+     \centering
+         \includegraphics[scale = 0.55]{phase_v6vcvs.eps}
+         \caption{Phase of $v_{s}$ and phase responses of $v_{6}$ and $v_{c}$.}
+     \label{phase_v6vcvs}
+ \end{figure}
+ \vspace{5mm}
+
+ \par As it can be seen, for high frequencies (from about $10^3 Hz$), the voltage value registered in node 6 presents a phase close to $-\pi$, which means it is in phase opposition with the input voltage source $v_s$. That can be easily confirmed by the observation of Figure \ref{v6t}, in which the plot is made precisely for $1$ $KHz$. Considering $v_c$, it lags behind the source as well (in $\pi/2$). This happens because the excitation is changing too fast for the output to be able to keep up with it (it takes time to charge the capacitor's plates while the input voltage is changing). The sudden drop happens for two decades, arround the time $\omega=2\pi f$ achieves the value of $\frac{1}{R_{eq}C}$ (which is analogue to the ressonance/natural frequency of a spring-mass system). That would be pretty evident, once again, by looking at the transfer function for the equivalent circuit previously described (which, in this case, represents the value of $\widetilde{V_c}$, since $\widetilde{V_s}=1$). Its angle is given by $-\arctan(\omega R_{eq}C)$, so for $\omega =\frac{1}{R_{eq}C}$ we get a value of $-\frac{\pi}{4}$, which is the central value of the phase drop of $v_{c}$.
+
+

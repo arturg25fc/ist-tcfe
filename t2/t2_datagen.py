@@ -14,7 +14,7 @@ class Var:
         self.val = val + random.random()*(val*float(tol)/100)
         
     def printVar(self):
-        print self.name, "=", self.val, "\n",
+        print self.name, "=", self.val, ";\n",
         
 class Prob:
     def __init__(self, number, weight):
@@ -23,10 +23,10 @@ class Prob:
         self.weight = weight
         
     def printProb(self):
-        print "Values: ",
+        #print "Values: ",
         for i in range(len(self.varList)):
             self.varList[i].printVar()
-        print "\n\n"
+        #print "\n\n"
             
     def addVar(self, var):
         self.varList.append(var)
@@ -60,19 +60,22 @@ class DataSet:
     
     def printDataSet(self):
         nprobs = len(self.probList)
-        print "Units for the values: V, mA, kOhm, mS and uF\n\n"
+        #print "Units for the values: V, mA, kOhm, mS and uF\n\n"
         for i in range(nprobs):
             self.probList[i].printProb()
 
+           
 def main():
     #init test
-    number = input("\n\nPlease enter the lowest student number in your group: \n")
-    print
-    print
-    dataset = DataSet(number)
+    f = open("nraluno.txt","r")
+    number = f.read()
+    #print "\n\n", number, "\n\n"
+
+    dataset = DataSet(int(number))
 
     #print test
     dataset.printDataSet()
+    f.close()
     
 if __name__ == "__main__": main()
 
