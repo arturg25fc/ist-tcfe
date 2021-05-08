@@ -1,0 +1,64 @@
+
+\section{Theoretical Analysis}
+\label{sec:analysis}
+\vspace{3mm}
+\par In this section, the previously shown circuit is theoretically analised.
+\vspace{3mm}
+\par First of all, it is important to refer that the transformer had to be replaced by a pair of dependent sources, so that the value of the input voltage could be modified. The following figure shows the resulting circuits.
+
+\begin{figure}[h] \centering
+\includegraphics[scale=0.5]{t3ds.pdf}
+\caption{AC/DC Converter considered with the transformer equivalent dependent sources.}
+\label{fig:t3ds}
+\end{figure}
+
+\vspace{100mm}
+
+\begin{table}[h]
+\centering
+    \begin{tabular}{c|c}
+      Quantity name  & Value\\ \hline
+      C & 600 $\mu$ F\\
+      R & 600 $k\Omega$ \\
+      Cost & 1201.6 MU \\
+    \end{tabular}
+    \caption{Values of circuit quantities.}
+ \label{tab_stefan}
+\end{table}
+
+After, a rectifier bridge, built with four diodes, allows our signal to be full wave rectified. Its output is nothing less than the absolute value of $v_S$, being the first step towards a more uniform signal. \par An \textbf{envelop detector} containing the rectifier and a capacitor covers the signal and produces an output that oscillates between charging and discharging periods to a resistor. Note that this discharge is allowed at $t=t_{OFF}$, as the diodes go OFF.
+
+\begin{equation}
+  t_{OFF}=\frac{1}{\omega}*arctan(\frac{1}{\omega RC})
+\end{equation}
+
+allowing
+
+\begin{equation}
+  v_C(t)=Acos(\omega t_{OFF})e^{-\frac{t-t_{OFF}}{RC}}
+\end{equation}
+
+after which, the recharge is possible due to the reactivation of the diodes.
+\par
+
+In order to reduce the remaining ripple, a \textbf{voltage regulator} circuit built with a series of 16 diodes increases the time constant. By means of incremental analysis (application to the 16 series diodes as resistors $r_d$), the incremental output $v_O$ can be calculated with
+
+\begin{equation}
+  v_O=\frac{16r_d}{16r_d+R}v_C
+\end{equation}
+
+\begin{equation}
+  r_d=\frac{\eta V_T}{I_Se^{\frac{V_d}{\eta V_T}}}
+\end{equation}
+
+with $r_d$ being the incremental resistance, $\eta=1$ a material constant and $V_T$ the termic voltage.
+
+\par
+
+To calculate the ripple, it is used
+
+\begin{equation}
+ v_{ripple}=max(V_{DC})-min(V_{DC})
+\end{equation}
+
+\vspace{100mm}

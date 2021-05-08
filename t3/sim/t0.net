@@ -1,0 +1,153 @@
+* Lab2: RC circuit analysis
+.options savecurrents
+
+
+* C O M P O N E N T S
+
+
+* input AC 230V voltage source
+vS 1 14 0 sin(0 230 50)
+
+
+* TRANSFORMER
+* linear current-controlled current source
+F1 1 14 E1 102.29
+* resistance para evitar loop
+R2 1 14 0.1
+* resistance para unir circuitos
+*R4 14 3 100000000000000
+******************************************
+* linear voltage-controlled voltage source
+E1 15 3 1 14 102.29
+
+
+* diode
+Dp1 15 6 Default
+Dp2 0 15 Default
+Dp3 0 3 Default
+Dp4 3 6 Default
+
+* resistance
+*R1 6 0 100000
+*R3 7 13 1000
+
+* capacitor
+C 6 0 600u
+
+
+
+* limiter
+R3 6 8 600k
+
+
+Dp5 8 9 Default
+Dp6 9 11 Default
+Dp7 11 12 Default
+Dp8 12 13 Default
+Dp9 13 14 Default
+Dp10 14 30 Default
+Dp11 30 16 Default
+Dp12 16 17 Default
+Dp13 17 18 Default
+Dp14 18 19 Default
+Dp15 19 20 Default
+Dp16 20 21 Default
+Dp17 21 22 Default
+Dp18 22 23 Default
+Dp19 23 24 Default
+Dp20 24 0 Default
+*Dp21 25 26 Default
+*Dp22 26 27 Default
+*Dp23 27 28 Default
+*Dp24 28 0 Default
+
+* díodos ao contrário
+
+*V0n5 5 12 3
+*Dp5 12 11 Default
+*V0n6 11 10 3
+*Dp6 10 9 Default
+*V0n7 9 8 3
+*Dp7 8 7 Default
+
+
+* díodos sem Von
+
+*Dp5 7 9 Default
+*Dp6 9 11 Default
+*Dp7 11 0 Default
+
+
+
+.model Default D
+
+
+.op
+
+*.ic v(6)=1000
+
+.end
+
+.control
+
+
+
+* A N A L Y S I S
+tran 1e-5 114.97ms 14.97ms
+*plot v(6)
+*plot v(8,9)
+plot v(8)-12  
+*plot v(15,3)
+*plot v(6)
+*plot v(1,14)
+*plot v(15,3)
+
+hardcopy output.ps v(8)-12 ylimit -0.0001 0.0001 xlimit 5ms 0.10497
+echo output_FIG
+hardcopy output2.ps v(6)
+echo output2_FIG
+hardcopy todos.ps v(8) v(8)-12 ylimit 0 15
+echo todos_FIG
+
+*valores
+
+*meas tran ymax MAX v(8) from=0ms to=10ms
+
+meas tran ymax MAX v(8) from=15ms to=30ms
+meas tran ymax2 MAX v(8) from=40ms to=50ms
+
+
+meas tran ymin MIN v(8) from=10ms to=20ms
+
+let ripple  = 'ymax - ymin'
+
+meas tran yavg AVG v(8) from=25.02ms to=45.02ms
+
+
+
+let merit = '1/(1201.6*(ripple+(yavg-12)+10^(-6)))'
+
+
+*médias 
+
+meas tran yavg AVG v(8) from=25.02ms to=45.02ms
+*meas tran yavg AVG v(6) from=14.96595ms to=44.96595ms
+*meas tran yavg AVG v(24) from=25.02ms to=45.02ms
+
+
+echo  "op_TAB"
+print ymax
+print ymin
+print yavg
+print ripple
+print merit 
+echo  "op_END"
+
+
+
+.endc
+
+
+
+
+

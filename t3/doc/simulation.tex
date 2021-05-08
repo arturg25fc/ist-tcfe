@@ -1,0 +1,96 @@
+\section{Simulation Analysis and result comparison}
+\label{sec:simulation}
+\captionsetup[table]{skip=10pt}
+
+\vspace{5mm}
+\par Tables \ref{tab_1} show the plot characteristic values for the output signal, obtained with Ngspice and Octave, respectively. Figures \ref{envelope_octave} and \ref{envelope_ngspice} show the plot for the voltages at the output of the Envelope Detector, obtained with Octave (wide scale) and Ngspice (short scale), respectively. Figures \ref{vo_octave} and \ref{vo_ngspice} show the plot for the voltages at the output of the Voltage Regulator minus 12, obtained with Octave and Ngspice, respectively. Figure \ref{todos!!} shows the plot for the voltage at the output of the Voltage Regulator and its value minus 12, obtained with Octave.
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[htbp]
+\begin{minipage}{.3\textwidth}
+\centering
+
+\begin{tabular}{|c|c|}
+\hline    
+\textbf{Quantity name} & \textbf{Value [V or other]} \\ \hline
+\input{op_tab}
+\end{tabular}
+\end{minipage}
+\hspace{50px}
+\begin {minipage}{.8\textwidth}
+\centering
+
+\begin{tabular}{|c|c|}
+\hline    
+\textbf{Quantity name} & \textbf{Value [V]} \\ \hline
+\input{tab_teorica}
+\end{tabular}
+\end{minipage}
+\caption{On the left, the values obtained via simulation in Ngspice. On the right, the ones obtained from Octave.}
+\label{tab_1}
+\end{table}
+
+
+
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=0.9\linewidth]{venvlope.eps}
+\captionsetup{type=figure}
+\caption{Plot for the voltage (V) at the output of the Envelope Detector, obtained with Octave.}
+\label{envelope_octave}
+\end{minipage}
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=0.9\linewidth]{output2.pdf}
+\captionsetup{type=figure}
+\caption{Plot for the voltage (V) at the output of the Envelope Detector, obtained with Ngspice.}
+\label{envelope_ngspice}
+\end{minipage} 
+
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=0.9\linewidth]{vo.eps}
+\captionsetup{type=figure}
+\caption{Plot for the voltage (V) at the output of the Voltage Regulator, obtained with Octave.}
+\label{vo_octave}
+\end{minipage}
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=0.9\linewidth]{output.pdf}
+\captionsetup{type=figure}
+\caption{Plot for the voltage (V) at the output of the Voltage Regulator, obtained with Ngspice.}
+\label{vo_ngspice}
+\end{minipage} 
+
+
+
+
+\begin{figure}[h] \centering
+\includegraphics[scale=0.5]{todos.pdf}
+\caption{Plot for the voltage at the output of the Voltage Regulator and its value minus 12, obtained with Octave.}
+\label{todos!!}
+\end{figure}
+
+
+\renewcommand{\arraystretch}{1.5}
+% \begin{table}[h]
+%   \centering
+%   \begin{tabular}{|c|c|}
+%     \hline    
+%     \textbf{Variable name} & \textbf{Value [mA or V]} \\ \hline
+%     \input{op_tab}
+%   \end{tabular}
+%   \caption{Operating point analysis - a variable preceded by @ is of type \textit{current} and expressed in miliAmpere; other variables are of type \textit {voltage} and expressed in Volt. $gb$ refers to the controlled current source $I_b$ and the rest is defined as before.}
+%   \label{tab_op}
+% \end{table}
+\vspace{3mm}
+\par Comparing both the simulation and theoretical results, one notices very small differences, which indicates that the model used was quite good. However, because in Octave we had to represent a non-linear component by a simpler model, some deviations are inevitable.
+\vspace{3mm}
+\par The merit is very good. However, for that to happen, we had to compute the transformator in a way that its role would be to increase the amplitude of the original signal. We know that it is not the way it happens in real life converters, but we still did it for merit purposes.
+\vspace{5mm}
+
+
+
+
+
+
