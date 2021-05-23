@@ -1,0 +1,42 @@
+\newpage
+\section{Introduction}
+\label{sec:introduction}
+\vspace{4.5mm}
+% state the learning objective
+\par The purpose of this laboratory assignment was to build an Audio Amplifier with an 8$\Omega$ speaker. It is important to understand that, in order to efficiently succeed on this task, one must find the most reasonable relationship between the money needed and the performance of the amplifier. This relationship is expressed as a figure of merit calculated with 
+
+\begin{equation}
+M=\frac{VoltageGain\times Bandwith}{cost*LowCutOffFrequency}
+\end{equation}
+
+\par The considered amplifier is presented in the following figure:
+
+\begin{figure}[h] \centering
+\includegraphics[scale=0.5]{t3ds.pdf}
+\caption{Schematic representation of the Audio Amplifier circuit.}
+\label{todos!!}
+\end{figure}
+
+The following table presents the values for the components considered in the circuit:
+
+\begin{table}[ht!]
+    \centering
+    \begin{tabular}{c c}
+    %\toprule
+    \textbf{Component} & \textbf{Value in $\Omega$ or $\mu F$} \\% \midrule
+    $R_{in}$  & 100 \\
+    $R_1$     & 120000 \\
+    $R_2$     & 20000  \\
+    $R_C$     & 800  \\
+    $R_E$     & 100   \\
+    $R_{out}$  & 200 \\
+    $C_i$     & 11   \\
+    $C_O$     & 175 \\
+    $C_b$     & 400   \\
+    \end{tabular}
+    \caption{Components and its Values.}
+    \label{tab:compvalues}
+\end{table}
+
+Note that $R_L$ is the considered load. Hence, its value is just $R_L=8\Omega$.\par
+\par In Section~\ref{sec:analysis}, a theoretical analysis of the circuit is presented, using Circuit Theory and Electronics Fundamentals concepts. After that, in Section~\ref{sec:simulation}, the circuit is analysed via simulation, using the software Ngspice. The obtained results are then compared, explaining the reasons behind the differences and similarities found. Finally, one can find the conclusions of this study outlined in Section~\ref{sec:conclusion}.

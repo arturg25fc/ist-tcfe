@@ -1,0 +1,140 @@
+\section{Simulation Analysis}
+\label{sec:simulation}
+\captionsetup[table]{skip=10pt}
+
+\vspace{5mm}
+\par Actually, this was the part of the work that was firstly made, as the outputs are more reliable (reasons explained ahead) and we wanted to choose the best combination of resistance and capacitance values, in order to obtain the best merit we could for the configuration shown before. We would like to enhance the role of some of the components and the effects of the changing of their characteristic values. 
+
+\vspace{3mm}
+\par The coupling capacitors' ($C_i$ and $C_o$) capacitances are mainly responsible for decreasing the low cut-off frequency of the band, increasing its width. The bypass capacitor $C_b$ contradicts the lowering effect of $R_E$ in the gain of the circuit. Lastly, the resistor $R_C$, connected to the collector of the gain stage, made it possible to, once again, increase the final gain value. As said, these values were chosen as a way to improve the relation of cost-quality of the circuit, represented by the merit formula.
+
+\vspace{3mm}
+\par Lastly, one can check on Table \ref{tab_1} that both transistors are operating in the forward active region, as $V_{CE}>V_{BE}$ (for NPN transistor 1) and $V_{EC}>V_{EB}$ (for PNP transistor 2).
+
+
+\section{Result comparison}
+\label{sec:results}
+\captionsetup[table]{skip=10pt}
+
+\vspace{3mm}
+\subsection{Operating point}
+
+\vspace{5mm}
+\par Tables \ref{tab_1} show the operating point computed values, obtained with Ngspice and Octave, respectively.
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[htbp]
+\begin{minipage}{.3\textwidth}
+\centering
+
+\begin{tabular}{|c|c|}
+\hline    
+\textbf{Quantity name} & \textbf{Value [V or A]} \\ \hline
+\input{op1_tab}
+\end{tabular}
+\end{minipage}
+\hspace{50px}
+\begin {minipage}{.8\textwidth}
+\centering
+
+\begin{tabular}{|c|c|}
+\hline    
+\textbf{Quantity name} & \textbf{Value [V or A]} \\ \hline
+\input{op_theo}
+\end{tabular}
+\end{minipage}
+\caption{Operating point analysis - a variable preceded by @ is of type \textit{current} and expressed in Ampere; other variables are of type \textit {voltage} and expressed in Volt. $q1$ and $q2$ refer to the transistors, $b$, $e$, and $c$ to their base, emitter and collector terminals (respectively) and the rest is defined as before. On the left, the values obtained via simulation in Ngspice. On the right, the ones obtained from Octave. }
+\label{tab_1}
+\end{table}
+
+\par Comparing both analysis results, one notices a few differences, resulting of the different approach the two methods use to simulate the components of the circuit. Ngspice used a very refined transistor model, with a great number of parameters, which enables a detailed analysis that produces results that pretty much describe the behaviour of a real transistor. On the other side, the inputs made on Octave use nothing but a clever way to divide the analysis process in several relatively easy steps that can be put together in the end, providing reasonable values and plots for the circuit parameters. Much of what is made there disregards the highly non-linearity that is characteristic of the transistors, thus the visible differences. Besides that, regarding Octave's analysis, frequency approximations are taken into account.
+\par One of the differences is the sign of the emitter's currents, due to the consideration of two distinct directions. 
+\par The values calculated for the incremental analysis parameters, obtained with Octave, are shown in Table \ref{tab_i}.
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|c|c|}
+\hline    
+\textbf{Quantity name} & \textbf{Value [$\Omega$ or S]} \\ \hline
+\input{inc_theo}
+\end{tabular}
+\caption{Parameters obtained for the incremental analysis using  Octave.}
+\label{tab_i}
+\end{table}
+
+
+
+\vspace{5mm}
+\subsection{Frequency analysis}
+
+\vspace{3mm}
+\par Figures \ref{gain_octave} and \ref{gain_ngspice} represent, respectively, the magnitude of the gain in $dB$ $dB(v(out))$ as a function of $f$. Figure \ref{phase_ngspice} represents the phase of the gain in degrees $ph(v(out))$ as a function of $f$. Note that it was chosen a logarithmic scale for the frequency axis (the space between each two consecutive vertical white lines represents a decade) and that both plots were made for a frequency range of $10$ $Hz$ to $100$ $MHz$, with a representation of 10 points per decade.
+
+
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=0.9\linewidth]{theo.eps}
+\captionsetup{type=figure}
+\caption{Magnitude in $dB$ $dB(v(out))$ of the gain as a function of $f$, obtained with Octave.}
+\label{gain_octave}
+\end{minipage}
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=0.9\linewidth]{vdboutf.pdf}
+\captionsetup{type=figure}
+\caption{Magnitude in $dB$ $dB(v(out))$ of the gain as a function of $f$, obtained with Ngspice.}
+\label{gain_ngspice}
+\end{minipage} 
+
+\begin{figure}[h] \centering
+\includegraphics[scale=0.5]{vphoutf.pdf}
+\caption{Phase in degrees $ph(v(out))$ of the gain as a function of $f$, obtained with Ngspice.}
+\label{phase_ngspice}
+\end{figure}
+
+\par Once again, due to Octave's linear approximation of a non-linear circuit, there are some disparities. Besides that, the upper cut-off frequency is estimated to be infinite.
+
+
+\vspace{5mm}
+\subsection{Merit and other circuit related values}
+
+\vspace{3mm}
+\par Tables \ref{tab_f} show some circuit related values, obtained with Ngspice and Octave, respectively.
+
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[htbp]
+\begin{minipage}{.3\textwidth}
+\centering
+
+\begin{tabular}{|c|c|}
+\hline    
+\textbf{Quantity name} & \textbf{Value [V, Hz, MU or other]} \\ \hline
+\input{Zin1_tab}
+\input{Zout0_tab}
+\input{merit1_tab}
+
+\end{tabular}
+\end{minipage}
+\hspace{50px}
+\begin {minipage}{.8\textwidth}
+\centering
+
+\begin{tabular}{|c|c|}
+\hline    
+\textbf{Quantity name} & \textbf{Value [V, MU or other]} \\ \hline
+\input{Z_theo}
+\input{gain_theo}
+\end{tabular}
+\end{minipage}
+\caption{Merit and other circuit related values. On the left, the values obtained via simulation in Ngspice. On the right, the ones obtained from Octave.}
+\label{tab_f}
+\end{table}
+
+\par Once again, due to Octave's linear approximation of a non-linear circuit, there are some disparities.
+
+
+
+
+
