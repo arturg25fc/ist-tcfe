@@ -1,0 +1,73 @@
+\section{Simulation Analysis and result comparison}
+\label{sec:simulation}
+\captionsetup[table]{skip=10pt}
+
+\vspace{5mm}
+
+
+\renewcommand{\arraystretch}{1.5}
+
+The following table presents the output voltage gain in the passband, the central frequency and the input and output impedances at this frequency.
+
+
+\begin{table}[htbp]
+\begin{minipage}{0.5\linewidth}
+\centering
+\begin{tabular}{|c|c|}
+\hline    
+\textbf{Quantity name} & \textbf{Value [V, MU, Hz or other]} \\ \hline
+\input{merit1_tab}
+\input{Zin1_tab}
+\input{Zout0_tab}
+\end{tabular}
+\end{minipage}
+\hspace{15mm}
+\begin {minipage}{0.5\linewidth}
+\centering
+\begin{tabular}{|c|c|}
+\hline    
+\textbf{Quantity name} & \textbf{Value [V, MU, Hz or other]} \\ \hline
+\input{tab_teorica}
+\end{tabular}
+\end{minipage}
+\caption{On the left, the values obtained via simulation in Ngspice. On the right, the ones obtained from Octave.}
+\label{tab_1}
+\end{table}
+
+
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=0.95\linewidth]{phase.eps}
+\captionsetup{type=figure}
+\caption{Plot for the gain (dB), obtained with Octave.}
+\label{gain_octave}
+\end{minipage}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=0.95\linewidth]{vdbf.pdf}
+\captionsetup{type=figure}
+\caption{Plot for the gain (dB), obtained with Ngspice.}
+\label{gain_ngspice}
+\end{minipage} 
+\newpage
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=0.95\linewidth]{gain.eps}
+\captionsetup{type=figure}
+\caption{Plot for the phase (degrees), obtained with Octave.}
+\label{vph_octave}
+\end{minipage}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=0.95\linewidth]{vphvof.pdf}
+\captionsetup{type=figure}
+\caption{Plot for the phase (degrees), obtained with Ngspice.}
+\label{ph_ngspice}
+\end{minipage} 
+
+
+\vspace{3mm}
+\par Comparing both the simulation and theoretical results, one notices a few differences. In the theoretial analysis, it was assumed an ideal model for the OP-AMP, with perfect impedances (as explained in theoretical analysis). In adition, non-linear components were linearly analysed. On the other hand, Ngspice makes use of a much more sofisticated model with a meriad of parameters.
+\vspace{3mm}
+\par Related to the phase plot: Octave's shows the evidence of 2 poles (2 capacitors), with a drop of 180 degreees (from 90 to -90 degrees). On the other side, Ngspice's one shows the evidence of 4 poles (4 capacitors considered on the simulation model). Besides that, due to representation range issues, there is a discontinuity in Ngspice's plot although the real variation is continuous.    
+\vspace{5mm}

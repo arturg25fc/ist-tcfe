@@ -1,0 +1,41 @@
+
+\section{Theoretical Analysis}
+\label{sec:analysis}
+\vspace{3mm}
+\par In this section, the previously shown circuit is theoretically analised.
+\vspace{3mm}
+\par First of all, it is important to refer that the available components had specific values for resistors and capacitors. Hence, the previously shown circuit is a simplification of the following:
+
+\begin{figure}[h] \centering
+\includegraphics[scale=0.5]{resistlab.pdf}
+\caption{Representation of the circuit using the available components.}
+\label{fig_circ2}
+\end{figure}
+
+
+In order to compute the input/output impedances, the OpAmp model was considered to have an infinite input impedance and a zero output impedance ($Z_{in}=\infty$ and $Z_{out}=0$).\par
+Looking at the circuit, to calculate its input impedance $Z_i$, it was considered that $v_O=0$ and, as a result, one can write
+
+\begin{equation}
+  |Z_i| = \left| Z_{C_{1}}+\frac{1}{\frac{1}{R_1}+\frac{1}{\infty}}\right|=| Z_{C_{1}}+R_1|
+\end{equation}
+
+
+Aiming now at the computation of the circuit's output impedance, considering the input voltage source as a short circuit, one obtains:
+
+\begin{equation}
+  |Z_O|=\left|\frac{1}{\frac{1}{Z_{C_2}}+\frac{1}{R_2+   \frac{1}{\frac{1}{R_3}+\frac{1}{0} }}}\right| = \left|\frac{Z_{C_{2}}R_2}{Z_{C_{2}}+R_2}\right|
+\end{equation}
+
+By inspection, equations can be written to calculate the voltages at the OpAmp terminals $v_{+},v_-,v_A$.
+
+\begin{equation}
+  v_-=v_+=\frac{R_1}{R_1+Z_{C_{1}}}v_i  \quad  \quad  v_A=v_-\times\left(\frac{R_3}{R_4}+1\right)
+\end{equation}
+
+Consequently, the output $v_O$ is given by
+
+\begin{equation}
+  v_O=v_A\times \frac{Z_{C_{2}}}{Z_{C_{2}}+R_2}
+\end{equation}
+
