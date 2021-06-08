@@ -1,0 +1,36 @@
+\newpage
+\section{Introduction}
+\label{sec:introduction}
+\vspace{4.5mm}
+% state the learning objective
+\par In this laboratory assignment, a Band-Pass filter using an OpAmp was made. It is important to understand that, in order to efficiently succeed on this task, one must find the most reasonable relationship between the money needed and the performance of the amplifier. This relationship is expressed as a figure of merit calculated with
+
+\begin{equation}
+M=\frac{1}{cost\times (GainDeviation + CentralFrequencyDeviation+ 10^{-6})}
+\end{equation}
+
+The following Figure presents the built circuit:
+
+\begin{figure}[h] \centering
+\includegraphics[scale=0.5]{t3ds.pdf}
+\caption{Considered circuit representation.}
+\label{fig:t3ds}
+\end{figure}
+
+\begin{table}[h]
+\centering
+    \begin{tabular}{c|c}
+      \textbf{Component}  & \textbf{Value and Units}\\ \hline
+      $R_1$ & 1 $k\Omega$\\
+      $R_2$ & 1 $k\Omega$ \\
+      $R_3$ & 130 $k\Omega$\\
+      $R_4$ & 1 $k\Omega$ \\
+      $C_1$ & 220 nF \\
+      $C_2$ & 110 nF \\
+    \end{tabular}
+    \caption{Components and their equivalent values.}
+ \label{tab_comps}
+\end{table}
+
+
+\par In Section \ref{sec:analysis}, a theoretical analysis of the circuit is presented, using Circuit Theory and Electronics Fundamentals concepts. After that, in Section \ref{sec:simulation}, the circuit is analysed via simulation, using the software Ngspice. The obtained results are then compared, explaining the reasons behind the differences and similarities found. Finally, one can find the conclusions of this study outlined in Section \ref{sec:conclusion}.

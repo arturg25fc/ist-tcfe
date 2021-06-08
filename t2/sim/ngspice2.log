@@ -1,0 +1,188 @@
+
+Circuit: * lab2: rc circuit analysis
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 1
+
+
+************************************************
+T R A N S I E N T   A N A L Y S I S
+************************************************
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+2                                 -5.32063e-13
+3                                 -1.68392e-12
+5                                 -4.55636e-13
+6                                      8.53566
+4                                            0
+7                                  1.82846e-13
+8                                  2.74936e-13
+hd#branch                           0.00274936
+vfalsa#branch                     -8.80678e-17
+
+
+No. of Data Rows : 2008
+
+The file "trans.ps" may be printed on a postscript printer.
+trans_FIG
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 1
+
+No. of Data Rows : 1
+	Node                                  Voltage
+	----                                  -------
+	----	-------
+	V(8)                             0.000000e+00
+	V(7)                             0.000000e+00
+	V(4)                             0.000000e+00
+	V(6)                             0.000000e+00
+	V(5)                             0.000000e+00
+	V(3)                             0.000000e+00
+	V(2)                             0.000000e+00
+
+	Source	Current
+	------	-------
+
+	@c[i]                            0.000000e+00
+	@gb[i]                           0.000000e+00
+	@r7[i]                           0.000000e+00
+	@r6[i]                           0.000000e+00
+	@r5[i]                           0.000000e+00
+	@r4[i]                           0.000000e+00
+	@r3[i]                           0.000000e+00
+	@r2[i]                           0.000000e+00
+	@r1[i]                           0.000000e+00
+	vfalsa#branch                    0.000000e+00
+	hd#branch                        0.000000e+00
+
+ Capacitor models (Fixed capacitor)
+      model                     C
+
+        cap                     0
+         cj                     0
+       cjsw                     0
+       defw                 1e-05
+       defl                     0
+     narrow                     0
+      short                     0
+        del                     0
+        tc1                     0
+        tc2                     0
+         di                     0
+      thick                     0
+     bv_max                 1e+99
+
+ Resistor models (Simple linear resistor)
+      model                     R
+
+        rsh                     0
+     narrow                     0
+      short                     0
+        tc1                     0
+        tc2                     0
+        tce                     0
+       defw                 1e-05
+          l                 1e-05
+         kf                     0
+         af                     0
+          r                     0
+     bv_max                 1e+99
+         lf                     1
+         wf                     1
+         ef                     1
+
+ Capacitor: Fixed capacitor
+     device                     c
+      model                     C
+capacitance           1.03856e-06
+      dtemp                     0
+     bv_max                 1e+99
+          i                     0
+          p                     0
+
+ CCVS: Linear current controlled current source
+     device                    hd
+          i                     0
+          v                     0
+          p                     0
+
+ Resistor: Simple linear resistor
+     device                    r7                    r6                    r5
+      model                     R                     R                     R
+ resistance               1043.43               2071.73                3104.6
+         ac               1043.43               2071.73                3104.6
+      dtemp                     0                     0                     0
+     bv_max                 1e+99                 1e+99                 1e+99
+      noisy                     1                     1                     1
+          i                     0                     0                     0
+          p                     0                     0                     0
+
+ Resistor: Simple linear resistor
+     device                    r4                    r3                    r2
+      model                     R                     R                     R
+ resistance               4111.35               3117.91               2073.07
+         ac               4111.35               3117.91               2073.07
+      dtemp                     0                     0                     0
+     bv_max                 1e+99                 1e+99                 1e+99
+      noisy                     1                     1                     1
+          i                     0                     0                     0
+          p                     0                     0                     0
+
+ Resistor: Simple linear resistor
+     device                    r1
+      model                     R
+ resistance               1001.78
+         ac               1001.78
+      dtemp                     0
+     bv_max                 1e+99
+      noisy                     1
+          i                     0
+          p                     0
+
+ VCCS: Voltage controlled current source
+     device                    gb
+          m                     0
+          i                     0
+          v                     0
+          p                     0
+
+ Vsource: Independent voltage source
+     device                vfalsa
+         dc                     0
+      acmag                     0
+      pulse         -
+        sin         -
+        exp         -
+        pwl         -
+       sffm         -
+         am         -
+    trnoise         -
+   trrandom         -
+          i                     0
+          p                    -0
+
+
+Total analysis time (seconds) = 0.02
+
+Total elapsed time (seconds) = 0.026 
+
+Total DRAM available = 7839.949 MB.
+DRAM currently available = 3825.789 MB.
+Total ngspice program size =   22.648 MB.
+Resident set size =   10.742 MB.
+Shared ngspice pages =    8.059 MB.
+Text (code) pages =    5.070 MB.
+Stack = 0 bytes.
+Library pages =    2.906 MB.
+

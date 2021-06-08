@@ -1,0 +1,16 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {section}{\numberline {2}Theoretical Analysis}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Nodal Analysis for $t<0$}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Nodal analysis for $t=0$, equivalent Resistance $R_{eq}$, Time Constant $\tau $}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Natural Solution $v_{6n}(t)$}{7}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Forced Solution $v_{6f}(t)$}{7}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Total Solution $v_6(t)$}{9}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Frequency analysis}{10}{subsection.2.6}%
+\contentsline {section}{\numberline {3}Simulation Analysis}{12}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Operating Point Analysis for $t<0$}{12}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Operating Point Analysis for $v_s=0$ and $V_x$ as a replacement for the capacitor}{12}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Transient analysis - natural solution}{12}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Transient analysis - total solution}{13}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Frequency analysis}{14}{subsection.3.5}%
+\contentsline {section}{\numberline {4}Conclusion}{15}{section.4}%
